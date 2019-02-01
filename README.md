@@ -1,3 +1,5 @@
+[![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
+
 # Translate Bot
 This translator uses the `google translate api`. 
 Do not open your browser for translation anymore. We do not like touching the mouse or annoying you.
