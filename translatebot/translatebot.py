@@ -4,7 +4,8 @@ from googletrans import Translator
 
 LANG = {'ko': 'en', 'en': 'ko'}
 
-if __name__ == '__main__':
+
+def main():
     # Argparse Setting
     parser = argparse.ArgumentParser(argument_default=argparse.SUPPRESS,
                                      description='Audio editor')
@@ -37,3 +38,6 @@ if __name__ == '__main__':
 
     if not args.dumb:
         print(data)
+
+if __name__ == '__main__':
+    main()
