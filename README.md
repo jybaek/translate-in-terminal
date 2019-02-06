@@ -37,3 +37,50 @@ $ .translate "hello"
 $ pbpaste
 여보세요
 ```
+
+### Clipboard
+The result translated text will be copied to clipboard.
+
+### Using the user input to translate
+The text can be more than one. it must be wrapped by quotation marks.
+```bash
+$ .translatebot "Hello World"
+# or
+$ .translatebot "Hello" "World"
+```
+
+### Using clipboard data to translate
+The data in clipboard must be a text format.
+```bash
+$ .translatebot -c
+# or
+$ .translatebot --clipboard
+```
+
+### No showing output message
+```bash
+$ .translatebot "Hi"
+안녕
+
+$ .translatebot -d "Hi" 
+ 
+$
+```
+
+### Help Message
+```bash
+$ .translatebot --help
+usage: translatebot.py [-h] [--text {comment,clipboard}] [--dumb]
+                       [data [data ...]]
+
+Audio editor
+
+positional arguments:
+  data                  The text to query.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --text {comment,clipboard}
+  --dumb, -d            No showing output data
+
+```
