@@ -28,12 +28,12 @@ Unfortunately, this is only compatible with English and Korean.
 Now, I look forward to the new world opening in your troubles.
 
 ### Using the user input to translate
-The text can be more than one. it must be wrapped by quotation marks.
+The text can be more than one. **It does not have to be wrapped by quotation marks.**
 ```bash
 $ translatebot "Hello World"
 안녕 세계
 # or
-$ translatebot "Hello" "World"
+$ translatebot Hello World
 안녕 세계
 ```
 

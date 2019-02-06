@@ -21,23 +21,21 @@ def main():
     text = args.data
     if args.clipboard:
         text = [pyperclip.paste()]
-
+    text = ' '.join(text)
     if not text:
         raise parser.error('No text to translate.')
 
     # Translating each text message
-    data = list()
     translator = Translator()
-    for t in text:
-        lang = translator.detect(t).lang
-        if lang not in ('ko', 'en'):
-            raise ValueError('Unknown language')
-        data.append(translator.translate(t, dest=LANG[lang]).text)
-    data = ' '.join(data)
+    lang = translator.detect(text).lang
+    if lang not in ('ko', 'en'):
+        raise ValueError('Unknown language')
+    data = translator.translate(text, dest=LANG[lang]).text
     pyperclip.copy(data)
 
     if not args.dumb:
         print(data)
+
 
 if __name__ == '__main__':
     main()
