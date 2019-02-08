@@ -9,11 +9,11 @@ def main():
     # Argparse Setting
     parser = argparse.ArgumentParser(argument_default=argparse.SUPPRESS,
                                      description='Terminal translator')
-    parser.add_argument('--clipboard', '-c', action='store_true',
+    parser.add_argument('-c', '--clipboard', action='store_true',
                         default=False, help='Using clipboard data.')
     parser.add_argument('data', default=None, nargs='*',
                         help='The text to query.')
-    parser.add_argument('--dumb', '-d', action='store_true',
+    parser.add_argument('-d', '--dumb', action='store_true',
                         default=False, help='No showing output data.')
     args = parser.parse_args()
 
