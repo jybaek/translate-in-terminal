@@ -22,6 +22,13 @@ python setup.py bdist_wheel
 pip install dist/ranslatebot-1.0.0-py3-none-any.whl -I # slush or back-slush
 ```
 
+if you build and execute in docker
+```bash
+$ docker build -t terminal_translator .
+$ docker run terminal_translator 'Hi'
+안녕하세요
+```
+
 ## Usage
 You can type the message you want to translate behind. Analyzes the input language and automatically sets the language to be translated.
 More convenient is the fact that you can see the translated results directly on the screen and even save it to the _clipboard_!
