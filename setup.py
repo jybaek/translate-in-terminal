@@ -9,15 +9,15 @@ except ImportError: # for pip <= 9.0.3
 
 ################################################################################
 # parse_requirements() returns generator of pip.req.InstallRequirement objects
-install_reqs = parse_requirements("requirements.txt", session=PipSession())
+#install_reqs = parse_requirements("requirements.txt", session=PipSession())
 from setuptools import setup, find_packages
-from translatebot import __version__ as version
+from translate import __version__ as version
 
 # e.g. ['django==1.5.1', 'mezzanine==1.4.6']
-reqs = [str(ir.req) for ir in install_reqs]
+reqs = ['googletrans==2.4.0', 'pyperclip==1.7.0']
 
 # Package meta-data.
-NAME = 'translatebot'
+NAME = 'terminal-translator'
 DESCRIPTION = 'This translator uses the google translate api. ' \
               'Do not open your browser for translation anymore. ' \
               'We do not like touching the mouse or annoying you..'
@@ -36,7 +36,7 @@ setup(
     url=URL,
     download_url='',
     install_requires=reqs,
-    packages=find_packages(include=['translatebot*', 'tests', ]),
+    packages=find_packages(include=['translate*', 'tests', ]),
     keywords=['translate', 'google'],
     python_requires='>=3',
     package_data={},
@@ -52,7 +52,7 @@ setup(
     ],
     entry_points={
               'console_scripts': [
-                  'translatebot=translatebot.translatebot:main',
+                  'translate=translate.translate:main',
               ],
           },
 )
