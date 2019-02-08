@@ -5,6 +5,7 @@ This translator uses the `google translate api`.
 Do not open your browser for translation anymore. We do not like touching the mouse or annoying you.
 
 ## Installation
+If you want to use the latest version, use the second method.
 ```bash
 pip install terminal-translator
 or
