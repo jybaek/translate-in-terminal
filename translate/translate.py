@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import argparse
 import pyperclip
 from googletrans import Translator
@@ -33,11 +34,11 @@ def main():
     if lang not in ('ko', 'en'):
         raise ValueError('Unknown language')
     data = translator.translate(text, dest=LANG[lang]).text
-    pyperclip.copy(data)
+    if args.clipboard:
+        pyperclip.copy(data)
 
     if not args.dumb:
         print(data)
-
 
 if __name__ == '__main__':
     main()
