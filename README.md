@@ -61,16 +61,15 @@ $
 ### Help Message
 ```bash
 $ translate --help
-usage: translate [-h] [--text {comment,clipboard}] [--dumb] [data [data ...]]
+usage: translate [-h] [--clipboard] [--dumb] [data [data ...]]
 
 Terminal translator
 
 positional arguments:
-  data                  The text to query.
+  data             The text to query.
 
 optional arguments:
-  -h, --help            show this help message and exit
-  --text {comment,clipboard}
-  --dumb, -d            No showing output data
-
+  -h, --help       show this help message and exit
+  --clipboard, -c  Using clipboard data.
+  --dumb, -d       No showing output data.
 ```
