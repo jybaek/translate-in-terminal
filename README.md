@@ -6,7 +6,7 @@ Do not open your browser for translation anymore. We do not like touching the mo
 
 ## Installation
 ```bash
-pip install translatebot
+pip install terminal-translator
 or
 pip install git+https://github.com/jybaek/translate-in-terminal.git
 ```
@@ -30,19 +30,19 @@ Now, I look forward to the new world opening in your troubles.
 ### Using the user input to translate
 The text can be more than one. **It does not have to be wrapped by quotation marks.**
 ```bash
-$ python translatebot.py "Hello World"
+$ translate "Hello World"
 안녕 세계
 # or
-$ python translatebot.py Hello World
+$ translate Hello World
 안녕 세계
 ```
 
 ### Using clipboard data to translate
 The data in clipboard must be a text format.
 ```bash
-$ python translatebot.py -c
+$ translate -c
 # or
-$ python translatebot.py --clipboard
+$ translate --clipboard
 ```
 
 ### Clipboard
@@ -50,21 +50,20 @@ The result translated text will be copied to clipboard.
 
 ### No showing output message
 ```bash
-$ python translatebot.py "Hi"
+$ translate "Hi"
 안녕
 
-$ python translatebot.py -d "Hi" 
+$ translate -d "Hi" 
  
 $
 ```
 
 ### Help Message
 ```bash
-$ python translatebot.py --help
-usage: translatebot.py [-h] [--text {comment,clipboard}] [--dumb]
-                       [data [data ...]]
+$ translate --help
+usage: translate [-h] [--text {comment,clipboard}] [--dumb] [data [data ...]]
 
-Audio editor
+Terminal translator
 
 positional arguments:
   data                  The text to query.

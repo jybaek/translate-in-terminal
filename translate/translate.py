@@ -8,7 +8,7 @@ LANG = {'ko': 'en', 'en': 'ko'}
 def main():
     # Argparse Setting
     parser = argparse.ArgumentParser(argument_default=argparse.SUPPRESS,
-                                     description='Audio editor')
+                                     description='Terminal translator')
     parser.add_argument('--clipboard', '-c', action='store_true',
                         default=False, help='Using clipboard data.')
     parser.add_argument('data', default=None, nargs='*',
