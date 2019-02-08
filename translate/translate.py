@@ -22,6 +22,8 @@ def main():
     if args.clipboard:
         text = [pyperclip.paste()]
     text = ' '.join(text)
+    text = text.replace('\n', ' ')
+
     if not text:
         raise parser.error('No text to translate.')
 

@@ -28,13 +28,18 @@ Unfortunately, this is only compatible with English and Korean.
 Now, I look forward to the new world opening in your troubles.
 
 ### Using the user input to translate
-The text can be more than one. **It does not have to be wrapped by quotation marks.**
+The text can be more than one. **It does not have to be wrapped by quotation marks.** 
+However, if the sentence contains a newline, you will need to add a pair of marks.
 ```bash
 $ translate "Hello World"
 안녕 세계
 # or
 $ translate Hello World
 안녕 세계
+# or
+$ translate "Hello
+> world"
+안녕 세상
 ```
 
 ### Using clipboard data to translate
