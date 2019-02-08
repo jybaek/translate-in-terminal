@@ -30,19 +30,19 @@ Now, I look forward to the new world opening in your troubles.
 ### Using the user input to translate
 The text can be more than one. **It does not have to be wrapped by quotation marks.**
 ```bash
-$ translatebot "Hello World"
+$ python translatebot.py "Hello World"
 안녕 세계
 # or
-$ translatebot Hello World
+$ python translatebot.py Hello World
 안녕 세계
 ```
 
 ### Using clipboard data to translate
 The data in clipboard must be a text format.
 ```bash
-$ .translatebot -c
+$ python translatebot.py -c
 # or
-$ .translatebot --clipboard
+$ python translatebot.py --clipboard
 ```
 
 ### Clipboard
@@ -50,17 +50,17 @@ The result translated text will be copied to clipboard.
 
 ### No showing output message
 ```bash
-$ .translatebot "Hi"
+$ python translatebot.py "Hi"
 안녕
 
-$ .translatebot -d "Hi" 
+$ python translatebot.py -d "Hi" 
  
 $
 ```
 
 ### Help Message
 ```bash
-$ .translatebot --help
+$ python translatebot.py --help
 usage: translatebot.py [-h] [--text {comment,clipboard}] [--dumb]
                        [data [data ...]]
 

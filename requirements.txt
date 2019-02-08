@@ -1,4 +1,2 @@
 googletrans==2.4.0
 pyperclip==1.7.0
-
-
