@@ -19,7 +19,7 @@ git clone https://github.com/jybaek/translate-in-terminal.git
 cd translate-in-terminal
 # pip install wheel
 python setup.py bdist_wheel
-pip install dist/ranslatebot-1.0.0-py3-none-any.whl -I # slush or back-slush
+pip install dist/translatebot-1.0.0-py3-none-any.whl -I # slush or back-slush
 ```
 
 if you build and execute in docker
@@ -75,7 +75,7 @@ $
 ### Help Message
 ```bash
 $ translate --help
-usage: translate [-h] [--clipboard] [--dumb] [data [data ...]]
+usage: translate.py [-h] [-c] [-d] [data [data ...]]
 
 Terminal translator
 
@@ -84,6 +84,7 @@ positional arguments:
 
 optional arguments:
   -h, --help       show this help message and exit
-  --clipboard, -c  Using clipboard data.
-  --dumb, -d       No showing output data.
+  -c, --clipboard  Using clipboard data.
+  -d, --dumb       No showing output data.
+
 ```
