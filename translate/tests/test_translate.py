@@ -41,6 +41,8 @@ class TestUnit (unittest.TestCase):
 
     # ==========================================================================
     def test_010_argument_clipboard(self):
+        if not CLIPBOARD:
+            return
         argspec = parser('-c'.split())
         self.assertTrue('clipboard' in argspec)
         self.assertTrue(argspec.clipboard)
