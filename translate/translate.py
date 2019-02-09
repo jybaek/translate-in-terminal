@@ -34,8 +34,7 @@ def main():
     if lang not in ('ko', 'en'):
         raise ValueError('Unknown language')
     data = translator.translate(text, dest=LANG[lang]).text
-    if args.clipboard:
-        pyperclip.copy(data)
+    pyperclip.copy(data)
 
     if not args.dumb:
         print(data)
