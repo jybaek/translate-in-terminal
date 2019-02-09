@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import argparse
 import pyperclip
 from googletrans import Translator
@@ -90,7 +91,6 @@ def main():
     if not args.dumb:
         print(result)
     return result
-
 
 if __name__ == '__main__':
     main()
