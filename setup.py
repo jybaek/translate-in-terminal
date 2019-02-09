@@ -55,4 +55,5 @@ setup(
                   'translate=translate.translate:main',
               ],
           },
+    test_suite='discover_tests',
 )

@@ -57,36 +57,39 @@ class TranslateAction(argparse._StoreAction):
             help=help,
             metavar=metavar)
 
-    def __call__(self, parser:argparse.ArgumentParser, namespace, values, option_string=None):
+    def __call__(self, parser:argparse.ArgumentParser, namespace, values,
+                 option_string=None):
         text = values
         if 'clipboard' in namespace and getattr(namespace, 'clipboard'):
             text = clipboard()
-        values = translate(text)
-        setattr(namespace, self.dest, values)
+        setattr(namespace, self.dest, text)
+
+
+def parser(*args, **kwargs):
+    _parser = argparse.ArgumentParser(description='Terminal translator',
+                                      argument_default=argparse.SUPPRESS)
+    _parser.register('action', 'translate', TranslateAction)
+    _parser.add_argument('-c', '--clipboard', action='store_true',
+                         help=CLIPBOARD_MESSAGE)
+    _parser.add_argument('-d', '--dumb', action='store_true', default=False,
+                         help='No showing output data.')
+    _parser.add_argument('data', nargs='*', action='translate', default=None,
+                         help='The text to query.')
+    args = _parser.parse_args(*args)
+    return args
 
 
 def main():
-    # Argparse Setting
-    parser = argparse.ArgumentParser(description='Terminal translator',
-                                     argument_default=argparse.SUPPRESS)
-    parser.register('action', 'translate', TranslateAction)
-    parser.add_argument('-c', '--clipboard', action='store_true',
-                         help=CLIPBOARD_MESSAGE)
-    parser.add_argument('-d', '--dumb', action='store_true', default=False,
-                         help='No showing output data.')
-    parser.add_argument('data', nargs='*', action='translate', default=None,
-                        help='The text to query.')
-    args = parser.parse_args()
-
-    # Getting the text messages at which user selected
+    args = parser()
     if not args.data:
-        raise parser.error('No text to translate.')
+        raise argparse.ArgumentTypeError('No text to translate.')
 
+    result = translate(args.data)
     if 'pyperclip' in globals():
-        pyperclip.copy(args.data)
-
+        pyperclip.copy(result)
     if not args.dumb:
-        print(args.data)
+        print(result)
+    return result
 
 
 if __name__ == '__main__':
