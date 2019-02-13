@@ -11,7 +11,6 @@
 
 import os
 import unittest
-
 from translate.translate import parser, translate, main, clipboard
 
 __location__ = os.path.realpath(
@@ -40,38 +39,44 @@ class TestUnit (unittest.TestCase):
         pass
 
     # ==========================================================================
+    def test_000_no_argument(self):
+        with self.assertRaises(SystemExit) as cm:
+            main([])
+        self.assertEqual(2, cm.exception.code)
+
+    # ==========================================================================
     def test_010_argument_clipboard(self):
         if not CLIPBOARD:
             return
-        argspec = parser('-c'.split())
-        self.assertTrue('clipboard' in argspec)
+        argspec, _ = parser('-c'.split())
+        self.assertTrue('clipboard' in vars(argspec))
         self.assertTrue(argspec.clipboard)
 
     # ==========================================================================
     def test_011_argument_dumb(self):
-        argspec = parser('-d'.split())
-        self.assertTrue('dumb' in argspec)
+        argspec, _ = parser('-d'.split())
+        self.assertTrue('dumb' in vars(argspec))
         self.assertTrue(argspec.dumb)
 
     # ==========================================================================
     def test_012_argument_data(self):
-        argspec = parser('Hello'.split())
-        self.assertTrue('data' in argspec)
+        argspec, _ = parser('Hello'.split())
+        self.assertTrue('data' in vars(argspec))
         self.assertEqual('Hello', ''.join(argspec.data))
 
     # ==========================================================================
     def test_020_mixed_arguments(self):
-        argspec = parser('Hello -d'.split())
-        self.assertTrue('data' in argspec)
-        self.assertTrue('dumb' in argspec)
+        argspec, _ = parser('Hello -d'.split())
+        self.assertTrue('data' in vars(argspec))
+        self.assertTrue('dumb' in vars(argspec))
         self.assertEqual('Hello', ''.join(argspec.data))
         self.assertTrue(argspec.dumb)
 
     # ==========================================================================
     def test_021_mixed_arguments(self):
-        argspec = parser('-d Hello'.split())
-        self.assertTrue('data' in argspec)
-        self.assertTrue('dumb' in argspec)
+        argspec, _ = parser('-d Hello'.split())
+        self.assertTrue('data' in vars(argspec))
+        self.assertTrue('dumb' in vars(argspec))
         self.assertEqual('Hello', ''.join(argspec.data))
         self.assertTrue(argspec.dumb)
 
@@ -80,9 +85,9 @@ class TestUnit (unittest.TestCase):
         if not CLIPBOARD:
             return
         pyperclip.copy('Hi')
-        argspec = parser('-c Hello'.split())
-        self.assertTrue('data' in argspec)
-        self.assertTrue('clipboard' in argspec)
+        argspec, _ = parser('-c Hello'.split())
+        self.assertTrue('data' in vars(argspec))
+        self.assertTrue('clipboard' in vars(argspec))
         self.assertEqual('Hi', ''.join(argspec.data))
         self.assertTrue(argspec.clipboard)
 
@@ -91,10 +96,11 @@ class TestUnit (unittest.TestCase):
         if not CLIPBOARD:
             return
         pyperclip.copy('Hi')
-        argspec = parser('-c Hello -d'.split())
-        self.assertTrue('data' in argspec)
-        self.assertTrue('clipboard' in argspec)
-        self.assertTrue('dumb' in argspec)
+        argspec, _ = parser('-c Hello -d'.split())
+        namespace = vars(argspec)
+        self.assertTrue('data' in namespace)
+        self.assertTrue('clipboard' in namespace)
+        self.assertTrue('dumb' in namespace)
         self.assertEqual('Hi', ''.join(argspec.data))
         self.assertTrue(argspec.clipboard)
         self.assertTrue(argspec.dumb)
@@ -122,4 +128,9 @@ class TestUnit (unittest.TestCase):
         text = translate('Hello, World.\n Good Morning'.split())
         self.assertEqual('안녕, 세상. 좋은 아침', text)
 
+    # ==========================================================================
+    def test_040_translate_unsupported_language(self):
+        with self.assertRaises(SystemExit) as cm:
+            text = main('こんにちは世界'.split())
+        self.assertEqual(2, cm.exception.code)
 

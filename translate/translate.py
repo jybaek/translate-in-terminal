@@ -29,7 +29,7 @@ def translate(text: list):
     translator = Translator()
     lang = translator.detect(text).lang
     if lang not in ('ko', 'en'):
-        raise ValueError('Unknown language')
+        raise ValueError('Unsupported Language. English, Korean Only.')
     data = translator.translate(text, dest=LANG[lang]).text
     return data
 
@@ -74,23 +74,28 @@ def parser(*args, **kwargs):
                          help=CLIPBOARD_MESSAGE)
     _parser.add_argument('-d', '--dumb', action='store_true', default=False,
                          help='No showing output data.')
-    _parser.add_argument('data', nargs='*', action='translate', default=None,
-                         help='The text to query.')
+    _parser.add_argument('data', metavar='text', nargs='*', action='translate',
+                         default=None, help='The text to query.')
     args = _parser.parse_args(*args)
-    return args
+    return args, _parser
 
 
-def main():
-    args = parser()
+def main(*argv):
+    args, _parser = parser(*argv)
     if not args.data:
-        raise argparse.ArgumentTypeError('No text to translate.')
+        raise _parser.error('No text to translate.')
 
-    result = translate(args.data)
+    try:
+        result = translate(args.data)
+    except ValueError as e:
+        raise _parser.error(str(e))
+
     if 'pyperclip' in globals():
         pyperclip.copy(result)
     if not args.dumb:
         print(result)
     return result
+
 
 if __name__ == '__main__':
     main()
