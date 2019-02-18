@@ -1,6 +1,6 @@
 [![Python 3.x](https://img.shields.io/badge/python-3.x-green.svg)](https://www.python.org/downloads/release/python-360/)
 ![Pypi yes](https://img.shields.io/pypi/wheel/yes.svg?colorB=green&style=flat)
-[![Build Status](https://travis-ci.org/RavenKyu/translate-in-terminal.svg?branch=master)](https://travis-ci.org/RavenKyu/translate-in-terminal)
+[![Build Status](https://travis-ci.org/jybaek/translate-in-terminal.svg?branch=master)](https://travis-ci.org/jybaek/translate-in-terminal)
 
 # Translate Bot
 This translator uses the `google translate api`. 
